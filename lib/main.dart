@@ -5,10 +5,11 @@ import 'package:flash_chat/screen/welcome_screen.dart';
 import 'package:flash_chat/screen/chat_page.dart';
 
 void main() {
-  runApp(FlashChat());
+  runApp(const FlashChat());
 }
 
 class FlashChat extends StatelessWidget {
+  const FlashChat({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

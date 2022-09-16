@@ -2,8 +2,10 @@ import 'package:flash_chat/screen/login_page.dart';
 import 'package:flash_chat/screen/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flash_chat/screen/rounded_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
+  WelcomeScreen({Key? key}) : super(key: key);
 
  static const String id = "welcome_screen";
 
@@ -20,7 +22,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
     // TODO: implement initState
     super.initState();
     controller = AnimationController(
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
       vsync: this,
       upperBound: 100,
     );
@@ -45,56 +47,38 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
               children: <Widget>[
                 Hero(
                   tag: "logo",
-                  child: Container(
-                    child: Image.asset('images/logo.png'),
+                  child: SizedBox(
                     height: controller.value,
+                    child: Image.asset('images/logo.png'),
                   ),
                 ),
                     TypewriterAnimatedTextKit(
-                      text: ['Flash Chat'],
-                        speed: Duration(milliseconds: 250),
-                      textStyle: TextStyle(
+                      text: const ['Flash Chat'],
+                        speed: const Duration(milliseconds: 250),
+                      textStyle: const TextStyle(
                                   fontSize: 40.0,
                                   fontWeight: FontWeight.w900,
                                   color: Colors.black
                                 ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 48.0,
                 ),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: (){
-                    Navigator.pushNamed(context,LoginPage.id);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text('Log In'),
-                ),
-              ),
+            RounderButton(
+              title: 'Login',
+              colour: Colors.blueAccent,
+              onPressed: (){
+                Navigator.pushNamed(context,LoginPage.id);
+              },
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: (){
-                    Navigator.pushNamed(context,RegisterPage.id);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text('Register'),
-                ),
-              ),
+            RounderButton(
+              title: 'Register',
+              colour: Colors.blueAccent[900],
+              onPressed: (){
+                Navigator.pushNamed(context,RegisterPage.id);
+              },
             ),
           ],
         ),
